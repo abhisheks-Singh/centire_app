@@ -1,0 +1,133 @@
+/* Global styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  /* About page container */
+  .about-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background-image: url('about-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    border-radius: 8px;
+  }
+  
+  .hero-content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 8px;
+  }
+  
+  .hero-content h1 {
+    font-size: 3em;
+    margin: 0;
+  }
+  
+  .hero-content p {
+    font-size: 1.5em;
+    margin-top: 10px;
+  }
+  
+  /* Mission Section */
+  .mission-section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .mission-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .mission-section p {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Values Section */
+  .values-section {
+    padding: 40px 20px;
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  .values-section h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+  }
+  
+  .values-cards {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .value-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+  }
+  
+  .value-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .value-card p {
+    color: #555;
+    font-size: 1em;
+  }
+  
+  /* Team Section */
+  .team-section {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .team-section h2 {
+    font-size: 2em;
+    margin-bottom: 40px;
+  }
+  
+  .team-cards {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .team-card {
+    text-align: center;
+    width: 30%;
+  }
+  
+  .team-card img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .team-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+  
+  .team-card p {
+    color: #777;
+    font-size: 1em;
+  }
+  
