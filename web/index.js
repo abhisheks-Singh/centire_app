@@ -8,7 +8,7 @@ import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
 import PrivacyWebhookHandlers from "./privacy.js";
 
-const PORT = parseInt(
+const PORT = parseInt( 
   process.env.BACKEND_PORT || process.env.PORT || "3000",
   10
 );
@@ -46,12 +46,12 @@ app.get("/api/products/all", async (_req, res) => {
   res.status(200).send(allProducts);
 });
 
-app.get("/api/products/all", async (_req, res) => {
-  const allProducts = await shopify.api.rest.Product.all({
-    session: res.locals.shopify.session,
-  });
-  res.status(200).send(allProducts);
-});
+// app.get("/api/products/all", async (_req, res) => {
+//   const allProducts = await shopify.api.rest.Product.all({
+//     session: res.locals.shopify.session,
+//   });
+//   res.status(200).send(allProducts);
+// });
 
 app.get("/api/products/count", async (_req, res) => {
   const productsCount = await shopify.api.rest.Product.all({
@@ -60,12 +60,12 @@ app.get("/api/products/count", async (_req, res) => {
   res.status(200).send(productsCount);
 })
 
-// app.get("/api/custom_collections/all", async (_req, res) => {
-//   const collections_Data = await shopify.api.rest.Product.all({
-//     session: res.locals.shopify.session,
-//   });
-//   res.status(200).send(collections_Data);
-// }) 
+app.get("/api/shop/all", async (_req, res) => {
+  const store_data = await shopify.api.rest.Shop.all({
+    session: res.locals.shopify.session,
+  });
+  res.status(200).send(store_data);
+}) 
 
 app.get("/api/custom_collections/all", async (_req, res) => {
   try {

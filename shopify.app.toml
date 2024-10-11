@@ -3,7 +3,7 @@
 client_id = "a01e9f3c9b948804db649919546d816c"
 name = "centire-first-app"
 handle = "centire-first-app"
-application_url = "https://reproduced-pvc-boots-contracts.trycloudflare.com"
+application_url = "https://cdna-saturday-regulatory-stuffed.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_customers,read_products,write_customers,write_orders"
 
 [auth]
 redirect_urls = [
-  "https://reproduced-pvc-boots-contracts.trycloudflare.com/auth/callback",
-  "https://reproduced-pvc-boots-contracts.trycloudflare.com/auth/shopify/callback",
-  "https://reproduced-pvc-boots-contracts.trycloudflare.com/api/auth/callback"
+  "https://cdna-saturday-regulatory-stuffed.trycloudflare.com/auth/callback",
+  "https://cdna-saturday-regulatory-stuffed.trycloudflare.com/auth/shopify/callback",
+  "https://cdna-saturday-regulatory-stuffed.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

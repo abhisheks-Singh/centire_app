@@ -10,37 +10,47 @@ export function SearchPage() {
     setSearchTerm(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent form submission
+  const fetchProducts = async () => {
     try {
-      const response = await fetch(`/api/products/all?search=${searchTerm}`, { // Assuming an API that accepts search term
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/products/all', { // Fetch all products initially
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
-      setProducts(data.data); // Assuming 'data' holds the product array
-      setFilteredProducts(data.data); // Initialize filtered products
+      setProducts(data.data); // Assuming 'data.data' holds the products array
+      setFilteredProducts(data.data); // Initially, show all products
     } catch (error) {
       console.error('Error fetching products:', error);
     }
   };
 
   useEffect(() => {
-    // Filter products based on search term
+    fetchProducts(); // Fetch products when the component mounts
+  }, []);
+
+  useEffect(() => {
+    // Filter products based on the search term in title, description, and vendor
     if (searchTerm) {
-      const results = products.filter(product =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const results = products.filter(product => {
+        const title = product.title?.toLowerCase() || ''; // Safeguard against null/undefined
+        const description = product.body_html?.toLowerCase() || ''; // Safeguard against null/undefined
+        const vendor = product.vendor?.toLowerCase() || ''; // Safeguard against null/undefined
+        return (
+          title.includes(searchTerm.toLowerCase()) ||
+          description.includes(searchTerm.toLowerCase()) ||
+          vendor.includes(searchTerm.toLowerCase())
+        );
+      });
       setFilteredProducts(results);
     } else {
-      setFilteredProducts(products);
+      setFilteredProducts(products); // If no search term, show all products
     }
   }, [searchTerm, products]);
 
   return (
     <div className="search-page">
       <h1>Search Products</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => e.preventDefault()}> {/* Prevent form submission */}
         <input
           type="text"
           value={searchTerm}

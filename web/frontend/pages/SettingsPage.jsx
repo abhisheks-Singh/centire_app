@@ -1,105 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SettingsPage.css';
 
 export function SettingsPage() {
-  const [profileSettings, setProfileSettings] = useState({
-    username: 'John Doe',
-    email: 'john.doe@example.com',
-    password: '********'
+  const [shopDetails, setShopDetails] = useState({
+    email: '',
+    shopOwner: '',
+    planName: '',
+    domain: '',
+    country: ''
   });
 
-  const [notificationSettings, setNotificationSettings] = useState({
-    emailNotifications: true,
-    smsNotifications: false
-  });
-
-  const handleProfileChange = (e) => {
-    const { name, value } = e.target;
-    setProfileSettings((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleNotificationChange = (e) => {
-    const { name, checked } = e.target;
-    setNotificationSettings((prev) => ({
-      ...prev,
-      [name]: checked
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you'd submit the settings to the backend or save them.
-    alert('Settings saved successfully!');
-  };
+  useEffect(() => {
+    fetch('/api/shop/all', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const shopData = data.data[0]; // Assuming the first object in 'data' array
+        setShopDetails({
+          email: shopData.email,
+          shopOwner: shopData.shop_owner,
+          planName: shopData.plan_display_name,
+          domain: shopData.domain,
+          country: shopData.country_name
+        });
+      })
+      .catch(error => console.error(error));
+  }, []);
 
   return (
     <div className="settings-page">
-      <h1>Settings</h1>
-      <form onSubmit={handleSubmit}>
-        {/* Profile Settings */}
-        <section className="settings-section">
-          <h2>Profile Settings</h2>
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              value={profileSettings.username}
-              onChange={handleProfileChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={profileSettings.email}
-              onChange={handleProfileChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={profileSettings.password}
-              onChange={handleProfileChange}
-              required
-            />
-          </div>
-        </section>
-
-        {/* Notification Settings */}
-        <section className="settings-section">
-          <h2>Notification Settings</h2>
-          <div className="form-group">
-            <label>Email Notifications</label>
-            <input
-              type="checkbox"
-              name="emailNotifications"
-              checked={notificationSettings.emailNotifications}
-              onChange={handleNotificationChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>SMS Notifications</label>
-            <input
-              type="checkbox"
-              name="smsNotifications"
-              checked={notificationSettings.smsNotifications}
-              onChange={handleNotificationChange}
-            />
-          </div>
-        </section>
-
-        {/* Save Button */}
-        <button type="submit" className="save-btn">Save Settings</button>
-      </form>
+      <h1>Store Details</h1>
+      <section className="settings-section">
+        <h2>Store Information</h2>
+        <div className="form-group">
+          <label>Store Email</label>
+          <input type="text" value={shopDetails.email} readOnly />
+        </div>
+        <div className="form-group">
+          <label>Store Owner</label>
+          <input type="text" value={shopDetails.shopOwner} readOnly />
+        </div>
+        <div className="form-group">
+          <label>Plan Name</label>
+          <input type="text" value={shopDetails.planName} readOnly />
+        </div>
+        <div className="form-group">
+          <label>Domain</label>
+          <input type="text" value={shopDetails.domain} readOnly />
+        </div>
+        <div className="form-group">
+          <label>Country</label>
+          <input type="text" value={shopDetails.country} readOnly />
+        </div>
+      </section>
     </div>
   );
 }

@@ -8,15 +8,15 @@ export default function IndexPage() {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
 
-  useEffect(() => {
-    fetch("/api/customers", {
-      method: "GET",
-      headers: {"Content-Type": "application/json"}
-    })
-    .then(request => request.json())
-    .then(response => console.log('customers data ', response))
-    .catch(error => console.error(error));
-  })
+  // useEffect(() => {
+  //   fetch("/api/customers", {
+  //     method: "GET",
+  //     headers: {"Content-Type": "application/json"}
+  //   })
+  //   .then(request => request.json())
+  //   .then(response => console.log('customers data ', response))
+  //   .catch(error => console.error(error));
+  // })
 
   const toggleUserMenu = useCallback(
     () => setIsUserMenuOpen((isUserMenuOpen) => !isUserMenuOpen),
